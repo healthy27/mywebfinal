@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>최다물 | 자기소개 SPA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable.min.css" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Pretendard Variable', 'Pretendard', 'Noto Sans KR', Arial, sans-serif;
+      background: #fff;
+      color: #222;
+    }
+    .menu-bar {
+      width: 100%;
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 4vw;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      height: 58px;
+      background: #fff;
+    }
+    .menu-btn {
+      background: none;
+      border: none;
+      font-size: 1.16em;
+      font-weight: 600;
+      color: #222;
+      padding: 15px 12px 12px 12px;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      outline: none;
+      transition: border-bottom .2s;
+    }
+    .menu-btn.active,
+    .menu-btn:hover {
+      border-bottom: 2px solid #222;
+    }
+    .main-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 42px 18px 30px 18px;
+    }
+    .profile-img {
+      display: block;
+      margin: 0 auto 32px auto;
+      width: 210px;
+      max-width: 95vw;
+      height: auto;
+      object-fit: cover;
+    }
+    h1 {
+      margin: 0 0 8px 0;
+      font-size: 2.2em;
+      text-align: center;
+      letter-spacing: 0.02em;
+      color: #222;
+    }
+    h2 {
+      font-size: 1.35em;
+      margin: 32px 0 10px 0;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 6px;
+      color: #222;
+      font-weight: bold;
+      letter-spacing: 0.01em;
+    }
+    p, ul {
+      font-size: 1.08em;
+      line-height: 1.65;
+      margin: 0 0 16px 0;
+    }
+    ul {
+      padding-left: 20px;
+      margin-bottom: 18px;
+    }
+    .hidden { display: none; }
+    .email-bar {
+      font-size: 1.12em;
+      color: #222;
+      margin: 30px 0 0 0;
+      font-weight: 600;
+      text-align: left;
+    }
+    .code-toggle-btn {
+      display: inline-block;
+      background: none;
+      color: #222;
+      border: 1px solid #bbb;
+      border-radius: 6px;
+      padding: 7px 19px;
+      font-size: 1em;
+      font-weight: 500;
+      cursor: pointer;
+      margin: 13px 0 7px 0;
+      transition: background 0.2s, color 0.2s;
+    }
+    .code-toggle-btn:hover {
+      background: #f6f6f6;
+      color: #222;
+      border-color: #222;
+    }
+    .code-image-box {
+      width: 100%;
+      text-align: center;
+      margin-top: 18px;
+      margin-bottom: 14px;
+    }
+    .code-image-box img {
+      width: 95%;
+      max-width: 480px;
+      border-radius: 8px;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.07);
+      margin: 0 auto;
+    }
+    @media (max-width: 600px) {
+      .main-content { padding: 22px 2vw 16px 2vw;}
+      .profile-img {width:92vw; min-width:110px; max-width:99vw;}
+      h1 {font-size:1.18em;}
+      h2 {font-size:1em;}
+      .code-image-box img {max-width: 97vw;}
+    }
+  </style>
+</head>
+<body>
+  <nav class="menu-bar">
+    <button class="menu-btn active" data-section="home">자기소개</button>
+    <button class="menu-btn" data-section="project">프로젝트</button>
+    <button class="menu-btn" data-section="contact">연락처</button>
+  </nav>
+
+  <div class="main-content">
+
+    <section id="home" class="page-section">
+      <img src="프로필.jpeg" alt="프로필 사진" class="profile-img">
+      <h1>최다물</h1>
+      <p style="text-align:center;font-size:1.08em; margin-bottom:30px;">강원대학교 컴퓨터공학과</p>
+      <h2>자기소개</h2>
+      <p>
+        안녕하세요! 저는 강원대학교 컴퓨터공학과에 재학 중인 <strong>최다물</strong>입니다.<br><br>
+        <strong>관심 언어:</strong> C, C++<br>
+        <strong>희망 분야:</strong> 졸업 후에는 은행, 보험 쪽에서 웹이나 서버 쪽 개발 업무를 해보고 싶어요.<br>
+        그리고 아직 본격적으로 공부해보진 않았지만, 증권회사에 흥미가 생기고 있어 주식 자동화 프로그램을 제작해보고 싶습니다.
+      </p>
+    </section>
+
+    <section id="project" class="page-section hidden">
+      <h2>프로젝트 경험</h2>
+      <ul>
+        <li>
+          <strong>Mini Portfolio SPA</strong>  
+          <div style="font-size:13px;">
+            자기소개 SPA 웹앱 직접 제작 (HTML, CSS, JavaScript, jQuery)
+          </div>
+        </li>
+        <li>
+          <strong>간단한 로그라이크 게임 (C++ 콘솔)</strong>
+          <div style="font-size:13px;">
+            - 콘솔에서 동작하는 미니 로그라이크 게임<br>
+            - <code>system("cls")</code>와 <code>GetAsyncKeyState</code>를 활용해 맵 이동<br>
+            - 함정(^) 밟으면 HP 감소, HP 0이 되거나 몬스터(M) 만나면 게임오버<br>
+            - 아이템(a) 획득시 HP 회복, Y는 도착 지점<br>
+            - C/C++ 기초 문법과 배열, 조건문, 반복문 활용
+          </div>
+          <button class="code-toggle-btn" onclick="toggleCodeImg()">코드 보기/숨기기</button>
+          <div class="code-image-box hidden" id="codeImgBox">
+            <img src="/mnt/data/코드사진.png" alt="로그라이크 게임 코드 캡처">
+          </div>
+        </li>
+        <li>
+          <strong>강원대 내셔널스 야구동아리 매니저</strong>
+          <div style="font-size:13px;">
+            학과 동아리 게시판 개발 및 현재 강원대학교 내셔널스 야구동아리 매니저로 활동 중입니다.
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section id="contact" class="page-section hidden">
+      <h2>연락처</h2>
+      <div class="email-bar">
+        zkzk1351@naver.com
+      </div>
+    </section>
+  </div>
+
+  <script>
+    document.querySelectorAll('.menu-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.menu-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        var section = this.getAttribute('data-section');
+        document.querySelectorAll('.page-section').forEach(sec => {
+          if(sec.id === section) sec.classList.remove('hidden');
+          else sec.classList.add('hidden');
+        });
+        location.hash = '#' + section;
+      });
+    });
+    window.addEventListener('DOMContentLoaded', () => {
+      let hash = location.hash.replace('#','');
+      if(hash && document.getElementById(hash)){
+        document.querySelectorAll('.menu-btn').forEach(b=>b.classList.remove('active'));
+        document.querySelector('.menu-btn[data-section="'+hash+'"]').classList.add('active');
+        document.querySelectorAll('.page-section').forEach(sec => {
+          if(sec.id === hash) sec.classList.remove('hidden');
+          else sec.classList.add('hidden');
+        });
+      }
+    });
+    window.addEventListener('hashchange', () => {
+      let hash = location.hash.replace('#','');
+      if(hash && document.getElementById(hash)){
+        document.querySelectorAll('.menu-btn').forEach(b=>b.classList.remove('active'));
+        document.querySelector('.menu-btn[data-section="'+hash+'"]').classList.add('active');
+        document.querySelectorAll('.page-section').forEach(sec => {
+          if(sec.id === hash) sec.classList.remove('hidden');
+          else sec.classList.add('hidden');
+        });
+      }
+    });
+    function toggleCodeImg() {
+      var imgBox = document.getElementById('codeImgBox');
+      imgBox.classList.toggle('hidden');
+    }
+  </script>
+</body>
+</html>
