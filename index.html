@@ -43,7 +43,7 @@
       border-bottom: 2px solid #222;
     }
     .main-content {
-      max-width: 800px;
+      max-width: 1000px;
       margin: 0 auto;
       padding: 42px 18px 30px 18px;
     }
@@ -106,25 +106,67 @@
       color: #222;
       border-color: #222;
     }
-    .code-image-box {
-      width: 100%;
-      text-align: center;
-      margin-top: 18px;
-      margin-bottom: 14px;
+    .project-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      justify-content: center;
+      padding: 0;
+      list-style: none;
+      margin-bottom: 18px;
     }
-    .code-image-box img {
-      width: 95%;
-      max-width: 480px;
-      border-radius: 8px;
-      box-shadow: 0 3px 15px rgba(0,0,0,0.07);
-      margin: 0 auto;
+    .project-card {
+      flex: 0 1 240px;
+      background: #fafbfc;
+      border-radius: 18px;
+      box-shadow: 0 3px 18px 0 rgba(80,80,120,0.08);
+      padding: 23px 19px 18px 19px;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      transition: box-shadow 0.18s, transform 0.18s;
+      min-height: 200px;
+      border: 1px solid #f1f1f1;
+    }
+    .project-card:hover {
+      box-shadow: 0 8px 32px 0 rgba(60, 60, 100, 0.15);
+      transform: translateY(-3px) scale(1.025);
+    }
+    @media (max-width: 900px) {
+      .project-card { flex: 1 1 45%; min-width: 190px; }
     }
     @media (max-width: 600px) {
-      .main-content { padding: 22px 2vw 16px 2vw;}
-      .profile-img {width:92vw; min-width:110px; max-width:99vw;}
-      h1 {font-size:1.18em;}
-      h2 {font-size:1em;}
-      .code-image-box img {max-width: 97vw;}
+      .project-list { flex-direction: column; gap: 15px;}
+      .project-card { width: 100%; min-width: unset; }
+    }
+    .modal-bg {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.23);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+    }
+    .modal-content {
+      background: #fff;
+      padding: 20px 10px 15px 10px;
+      border: 1px solid #aaa;
+      max-width: 90vw;
+      max-height: 90vh;
+      overflow: auto;
+      position: relative;
+      box-shadow: 0 2px 14px rgba(0,0,0,0.14);
+    }
+    .modal-close {
+      position: absolute;
+      top: 10px;
+      right: 18px;
+      font-size: 2em;
+      color: #444;
+      cursor: pointer;
+      user-select: none;
     }
   </style>
 </head>
@@ -152,30 +194,27 @@
 
     <section id="project" class="page-section hidden">
       <h2>프로젝트 경험</h2>
-      <ul>
-        <li>
-          <strong>Mini Portfolio SPA</strong>  
-          <div style="font-size:13px;">
+      <ul class="project-list">
+        <li class="project-card">
+          <strong>Mini Portfolio SPA</strong>
+          <div style="font-size:13px; margin-top:6px;">
             자기소개 SPA 웹앱 직접 제작 (HTML, CSS, JavaScript, jQuery)
           </div>
         </li>
-        <li>
+        <li class="project-card">
           <strong>간단한 로그라이크 게임 (C++ 콘솔)</strong>
-          <div style="font-size:13px;">
+          <div style="font-size:13px; margin-top:6px;">
             - 콘솔에서 동작하는 미니 로그라이크 게임<br>
             - <code>system("cls")</code>와 <code>GetAsyncKeyState</code>를 활용해 맵 이동<br>
             - 함정(^) 밟으면 HP 감소, HP 0이 되거나 몬스터(M) 만나면 게임오버<br>
             - 아이템(a) 획득시 HP 회복, Y는 도착 지점<br>
             - C/C++ 기초 문법과 배열, 조건문, 반복문 활용
           </div>
-          <button class="code-toggle-btn" onclick="toggleCodeImg()">코드 보기/숨기기</button>
-          <div class="code-image-box hidden" id="codeImgBox">
-            <img src="code.png" alt="로그라이크 게임 코드 캡처">
-          </div>
+          <button class="code-toggle-btn" onclick="openModal()">코드 보기/숨기기</button>
         </li>
-        <li>
+        <li class="project-card">
           <strong>강원대 내셔널스 야구동아리 매니저</strong>
-          <div style="font-size:13px;">
+          <div style="font-size:13px; margin-top:6px;">
             학과 동아리 게시판 개발 및 현재 강원대학교 내셔널스 야구동아리 매니저로 활동 중입니다.
           </div>
         </li>
@@ -190,9 +229,24 @@
     </section>
   </div>
 
+  <div id="modalBg" class="modal-bg" style="display: none;" onclick="closeModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <span class="modal-close" onclick="closeModal()">&times;</span>
+      <img src="code.png" alt="로그라이크 게임 코드 캡처" style="width:95%; max-width:400px;">
+    </div>
+  </div>
+
   <script>
+    function openModal() {
+      document.getElementById('modalBg').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modalBg').style.display = 'none';
+    }
+
     document.querySelectorAll('.menu-btn').forEach(btn => {
       btn.addEventListener('click', function() {
+        closeModal();
         document.querySelectorAll('.menu-btn').forEach(b => b.classList.remove('active'));
         this.classList.add('active');
         var section = this.getAttribute('data-section');
@@ -203,6 +257,7 @@
         location.hash = '#' + section;
       });
     });
+
     window.addEventListener('DOMContentLoaded', () => {
       let hash = location.hash.replace('#','');
       if(hash && document.getElementById(hash)){
@@ -225,10 +280,6 @@
         });
       }
     });
-    function toggleCodeImg() {
-      var imgBox = document.getElementById('codeImgBox');
-      imgBox.classList.toggle('hidden');
-    }
   </script>
 </body>
 </html>
